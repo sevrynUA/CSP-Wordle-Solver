@@ -1,1 +1,1 @@
-# Wordlebot
+# WordleBot
