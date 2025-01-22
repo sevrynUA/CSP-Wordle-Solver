@@ -4,7 +4,7 @@
 # Players have to guess a 5-letter word within 6 attempts, receiving feedback on the correctness of each letter.
 # The feedback consists of 'G' (correct letter and position), 'Y' (correct letter but wrong position), and 'B' (incorrect letter).
 # The bot uses a grid to track possible letters for each position in the word, applying constraints based on feedback. 
-# It ranks words by summing letter frequency scores calculated from the dataset.
+# It ranks words by summing letter frequency scores based on a predefined cryptography letter distribution.
 
 import numpy as np
 import pandas as pd
@@ -12,6 +12,14 @@ import random
 import time
 from collections import Counter
 from typing import List, Dict, Set, Optional
+
+# Cryptography Letter Frequency Distribution
+LETTER_DISTRIBUTION = {
+    'A': 8.2, 'B': 1.5, 'C': 2.8, 'D': 4.3, 'E': 12.7, 'F': 2.2, 'G': 2.0, 'H': 6.1,
+    'I': 7.0, 'J': 0.2, 'K': 0.8, 'L': 4.0, 'M': 2.4, 'N': 6.7, 'O': 7.5, 'P': 1.9,
+    'Q': 0.1, 'R': 6.0, 'S': 6.3, 'T': 9.1, 'U': 2.8, 'V': 1.0, 'W': 2.4, 'X': 0.2,
+    'Y': 2.0, 'Z': 0.1
+}
 
 class Grid:
     def __init__(self, word: Optional[str] = None) -> None:
@@ -34,29 +42,10 @@ class Grid:
         words_list: List[str] = [str(w).strip() for w in df[0].values]
         self.allowed_words: np.ndarray = np.array(words_list, dtype=str)
 
-        # Calculate dataset-based letter frequencies
-        self.letter_frequencies: Dict[str, float] = self.calculate_letter_frequencies(words_list)
-
         if word is not None:
             self.word: str = word
         else:
             self.word: str = random.choice(self.allowed_words)
-
-    def calculate_letter_frequencies(self, words: List[str]) -> Dict[str, float]:
-        """
-        Calculate the frequency of each letter in the dataset.
-
-        Args:
-            words (List[str]): List of words from the dataset.
-
-        Returns:
-            Dict[str, float]: A dictionary of letter frequencies.
-        """
-        letter_counts: Counter[str] = Counter()
-        for word in words:
-            letter_counts.update(word)  # Count letters in each word
-        total_letters: int = sum(letter_counts.values())
-        return {letter: count / total_letters for letter, count in letter_counts.items()}
 
     def get_cells(self) -> List[Set[str]]:
         """
@@ -208,7 +197,7 @@ class WordleBot:
 
     def rank_guess(self, word: str) -> float:
         """
-        Rank a guess based on dataset-based letter frequencies.
+        Rank a guess based on predefined letter frequencies.
 
         Args:
             word (str): The guessed word.
@@ -216,7 +205,7 @@ class WordleBot:
         Returns:
             float: The score of the guessed word based on letter frequencies.
         """
-        return sum(self.grid.letter_frequencies.get(c, 0) for c in set(word))
+        return sum(LETTER_DISTRIBUTION.get(c.upper(), 0) for c in set(word))
 
     def play(self) -> int:
         """
@@ -263,7 +252,7 @@ class WordleBot:
 
         print(f"Game over! The bot failed to guess the word {self.grid.word} in {max_attempts} attempts.")
         return 7
-
+    
 def solve_all_words() -> None:
     """
     Solve all words in the dataset and provide statistics.
