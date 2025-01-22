@@ -24,7 +24,7 @@ The feedback consists of 'G' a green color (correct letter and position), 'Y' a 
 
 # Approach
 My approach was to choose words based on letter frequency distributions common in cryptography. The sum of their letter distribution values is the words score for that guess, and it chooses the highest scoring word. 
-My goal was to deviate from the popular information theory approach of minimizing entropy (by selecting guesses that are as informative as possible).
+My goal was to deviate from the popular information theory approach of minimizing entropy (selecting guesses that are as informative as possible).
 
 
 ## Cryptography Distribution
