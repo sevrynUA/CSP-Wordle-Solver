@@ -1,6 +1,6 @@
 # WordleBot
 
-A strategic solver for Wordle's Hard Mode, utilizing cryptographic letter distribution analysis to crack puzzles effectively.
+A strategic solver for Wordle's Hard Mode, utilizing cryptographic letter distribution analysis to score words.
 
 Wordle is an imperfect information game which is a constraint satisfaction problem. \
 Players have to guess a 5-letter word within 6 attempts, receiving feedback on the correctness of each letter. \
