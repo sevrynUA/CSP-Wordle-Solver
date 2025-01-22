@@ -1,1 +1,1 @@
-# CSP-Wordle-Solver
+# Wordlebot
