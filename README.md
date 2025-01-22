@@ -1,6 +1,10 @@
 # WordleBot
+
 A strategic solver for Wordle's Hard Mode, utilizing cryptographic letter distribution analysis to crack puzzles effectively.
 
+Wordle is an imperfect information game which is a constraint satisfaction problem. \
+Players have to guess a 5-letter word within 6 attempts, receiving feedback on the correctness of each letter. \
+The feedback consists of 'G' a green color (correct letter and position), 'Y' a yellow color (correct letter but wrong position), and 'B' a black/gray color (incorrect letter).
 
 # Results
 | Metric              | Value          |
@@ -35,3 +39,6 @@ My goal was to deviate from the popular information theory approach of minimizin
 | Letter | Y    | Z    |
 |--------|------|------|
 | Freq % | 2.0% | 0.1% |
+
+# Future Improvements
+Experiment with a Reinforcement Learning approach to see how well an agent can play a imperfect information game like Wordle.
