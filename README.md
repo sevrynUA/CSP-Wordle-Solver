@@ -1,9 +1,12 @@
 # WordleBot
-
 A strategic solver for Wordle's Hard Mode, utilizing cryptographic letter distribution analysis to score words.
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/b7567661-203e-4ad3-9b20-89cc81a058dc" alt="Wordle Bot Output" />
+  <p><strong>Wordle Bot - January 21, 2025</strong></p>
+</div>
 
-Wordle is an imperfect information game which is a constraint satisfaction problem. \
-Players have to guess a 5-letter word within 6 attempts, receiving feedback on the correctness of each letter. \
+Wordle is an imperfect information game which is a constraint satisfaction problem. 
+Players have to guess a 5-letter word within 6 attempts, receiving feedback on the correctness of each letter. 
 The feedback consists of 'G' a green color (correct letter and position), 'Y' a yellow color (correct letter but wrong position), and 'B' a black/gray color (incorrect letter).
 
 # Results
